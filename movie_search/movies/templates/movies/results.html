@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyIxUVXlT02D9zOMEmnW+U3HHDI9S4jvx" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Movie Details</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Title: {{ details.Title }}</li>
+            <li class="list-group-item">Year: {{ details.Year }}</li>
+            <li class="list-group-item">Plot: {{ details.Plot }}</li>
+            <li class="list-group-item">Rated: {{ details.Rated }}</li>
+            <li class="list-group-item">RunTime: {{ details.Runtime }}</li>
+            <li class="list-group-item">Language: {{ details.Language }}</li>
+            <li class="list-group-item">Metascore: {{ details.Metascore }}</li>
+            <li class="list-group-item">IMDB Votes: {{ details.imdbVotes }}</li>
+            <li class="list-group-item">IMDB Rating: {{ details.imdbRating }}</li>
+            <!-- Include other details you want to display -->
+        </ul>
+    </div>
+
+    <!-- Include Bootstrap JS and Popper.js (if needed) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvXaAX4mI" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyIxUVXlT02D9zOMEmnW+U3HHDI9S4jvx" crossorigin="anonymous"></script>
+</body>
+</html>

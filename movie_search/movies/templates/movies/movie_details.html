@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Details</title>
+</head>
+<body>
+    <h1>Movie Details for '{{ title }}'</h1>
+    {% if details %}
+        <pre>{{ details|safe }}</pre>
+    {% else %}
+        <p>No details available.</p>
+    {% endif %}
+</body>
+</html>
