@@ -1,0 +1,30 @@
+
+
+{% extends 'events/base.html' %}
+
+{% block content %}
+<br><br>
+    {% if user.is_authenticated %}
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for venue in My_venue %}
+            
+                <div class="col">
+                    
+                    <div class="card">
+                       
+                        <div class="card-body">
+                            <h5 class="card-title">{{ venue.name }}</h5>
+                            <p class="card-text">{{ venue.owner }}</p>
+                            <p class="card-text">{{venue.address}}</p>
+                            <a href="{% url 'show-venue' venue.id %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No venue found.</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h1 class="text-center">You must be logged in</h1>
+    {% endif %}
+{% endblock %}

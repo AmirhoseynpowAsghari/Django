@@ -1,0 +1,47 @@
+
+
+{% extends 'events/base.html' %}
+
+{% block content %}
+<br>
+
+{% if user.is_authenticated%}
+
+  {%if user == venue.owner%}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-secondary">Save</button>
+    </form>
+
+    {%else%}
+    <h1>Access Denied</h3>
+    <h3>Only the venue's manager can update this event ...</h4>
+      <br><br>
+    <h4>Logged in user : {{user}}</h1>
+    <br><br>
+    <h4>Owner : {{venue.owner.username }}</h1>
+
+
+    {%endif%}
+    {%else%}
+    <h1>You must log in</h1>
+
+{%endif%}
+{% endblock %}
+
+
+{% comment %} {% extends 'events/base.html' %}
+
+{%block content%}
+{% for event in events %}
+ <tr>
+   <td>{{ event.name }}</td>
+   <td>{{ event.event_date }}</td>
+   <td>
+     <a href="{% url 'Edit-Event' event.id %}">Edit</a>
+   </td>
+ </tr>
+{% endfor %}
+{%endblock%} {% endcomment %}

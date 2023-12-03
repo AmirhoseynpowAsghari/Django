@@ -1,0 +1,14 @@
+{% extends 'events/base.html' %}
+
+{% block content%}
+
+<center><h1>You have seached for  {{searched}}</h1>
+<br>
+{% for event in events%}
+<div class="d-grid gap-2">
+<a href="{% url 'show-event' event.id%}" class="btn btn-dark " tabindex="-1" role="button" aria-disabled="true">{{event}}</a>
+<br>
+</div>
+{%endfor%}
+</center>
+{%endblock%}

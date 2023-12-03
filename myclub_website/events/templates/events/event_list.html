@@ -1,0 +1,81 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <br><br>
+        {% comment %} <a href = "{% url 'order-by-likes'%}" class="btn btn-dark">Order by likes</a> {% endcomment %}
+        <br><br>
+        <div class="row">
+            {% for event in event_list %}
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <a href="{% url 'show-event' event.id%}"><h5 class="card-title">{{ event }}</h5></a>
+                        {% if event.event_date.date < today %}
+                        <hr>
+                        <button class="btn btn-warning">Expired</button>
+                        <hr>
+                        {% endif %}
+                        
+                        <ul class="list-unstyled">
+                            
+                            {% if user.is_authenticated%}
+                            {%if user == event.manager%}
+                            <a href = "{% url 'Edit-Event' event.id%}" class="btn btn-dark">Edit</a>
+                            <a href = "{% url 'delete-event' event.id%}"  class="btn btn-danger">Delete</a>
+                            
+                        {%endif%}
+                        {%endif%}
+                            
+                            <li>Date: {{ event.event_date }}</li>
+                            <li>Manager: {{ event.manager }}</li>
+                            <li>Venue: {{ event.venue }}</li>
+                            <li>Description: {{ event.description }}</li>
+                            <li>Attendees:
+                                <ul class="list-unstyled">
+                                    {% for attendee in event.attendees.all %}
+                                        <li>{{ attendee }}</li>
+                                    {% endfor %}
+
+                                </ul>
+                                {% if user.is_authenticated%}
+                                <form action="{% url 'like' event.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-info">Like</button>
+                                    <span>: {{event.likes}}</span>
+                                </form>
+                                {%endif%}
+                            </li>
+                        </ul>
+   
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>  
+    </div>
+{% endblock %}
+
+{% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.like-button').click(function() {
+        var eventId = $(this).data('event-id');
+        var likeCountElement = $('#like-count-' + eventId);
+
+        $.ajax({
+            url: '/like_event/',  // Replace with the actual URL of your `like_event` view
+            type: 'POST',
+            data: {
+                'event_id': event_id,  // Pass the event ID as a parameter
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                // Handle the response here
+                like_count.text(response.like_count);
+                // You can update the like count on your page dynamically using JavaScript
+            }
+        });
+    });
+});
+</script> {% endcomment %}

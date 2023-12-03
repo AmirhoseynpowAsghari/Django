@@ -1,0 +1,87 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+<center>
+ 
+
+    {%if user.is_authenticated%}
+    Last Visit: {{ user.uservisit.last_visit|date:'H:i:s' }}
+        <h1>Hello {{user.username}}  Popular Events for {{ current_year }}</h1>
+        {%else%}
+        <h1>Hello UnKnown :) Events for {{ current_year }}</h1>
+    {%endif%}
+
+      <br><br>
+<div class="row">
+    {% for event in popular_events %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ event.name }}</h5>
+                    <p class="card-text">{{ event.manager }}</p>
+                    <p class="card-text">{{ event.venue }}</p>
+                    <p class="card-text">Likes: {{ event.likes }}</p>
+                    {%if user.is_authenticated%}
+                    <form action="{% url 'like' event.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-primary" type="submit">Like</button>
+                    </form>
+                    {%else%}
+                    <form action="{% url 'like' event.id %}" method="post">
+                      {% csrf_token %}
+                      <button class="btn btn-primary disabled" type="submit">Like</button>
+                  </form>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<br><br><br>
+<div class="bg-black" style="margin-top:0px;height:23px"></div>
+
+<div class="bg-black" style="margin-top:1px;height:22px"></div>
+
+<div class="bg-black" style="margin-top:2px;height:21px"></div>
+
+<div class="bg-black" style="margin-top:3px;height:20px"></div>
+
+<div class="bg-black" style="margin-top:4px;height:19px"></div>
+
+<div class="bg-black" style="margin-top:5px;height:18px"></div>
+
+<div class="bg-black" style="margin-top:6px;height:17px"></div>
+<div class="bg-black" style="margin-top:7px;height:16px"></div>
+<div class="bg-black" style="margin-top:8px;height:15px"></div>
+<div class="bg-black" style="margin-top:9px;height:14px"></div>
+<div class="bg-black" style="margin-top:10px;height:13px"></div>
+<div class="bg-black" style="margin-top:11px;height:12px"></div>
+<div class="bg-black" style="margin-top:12px;height:11px"></div>
+<div class="bg-black" style="margin-top:13px;height:10px"></div>
+<div class="bg-black" style="margin-top:14px;height:9px"></div>
+<div class="bg-black" style="margin-top:15px;height:8px"></div>
+<div class="bg-black" style="margin-top:16px;height:7px"></div>
+<div class="bg-black" style="margin-top:17px;height:6px"></div>
+<div class="bg-black" style="margin-top:18px;height:5px"></div>
+<div class="bg-black" style="margin-top:19px;height:4px"></div>
+<div class="bg-black" style="margin-top:20px;height:3px"></div>
+<div class="bg-black" style="margin-top:21px;height:2px"></div>
+<div class="bg-black" style="margin-top:22px;height:1px"></div>
+<br><br><br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+          <h4 class="text-center">Calendar</h4>
+        </div>
+        <div class="card-body">
+          <div class="calendar">
+            {{ cal|safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

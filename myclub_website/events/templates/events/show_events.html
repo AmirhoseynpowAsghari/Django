@@ -1,0 +1,18 @@
+{% extends 'events/base.html' %}
+
+{%block content%}
+<div class="col-md-6">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ context }}</h5>
+            <ul class="list-unstyled">
+                <li>Name: {{ context.name }}</li>
+                <li>Event Date: {{ context.event_date}}</li>
+                <li>Venue: {{ context.venue}}</li>
+                <li>Manager: {{ context.manager }}</li>
+                <li>Attendees: {{ context.attendees }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{%endblock%}

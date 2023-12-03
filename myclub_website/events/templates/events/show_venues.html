@@ -1,0 +1,27 @@
+{% extends 'events/base.html' %}
+
+{%block content%}
+<div class="col-md-6">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ context }}</h5>
+            <ul class="list-unstyled">
+                <li>Name: {{ venue.name }}</li>
+                <li>Address: {{ venue.address }}</li>
+                <li>Zipcode: {{ venue.zip_code }}</li>
+                <li>Phone Number: {{ venue.phone }}</li>
+                <li>Web Address: {{ venue.web }}</li>
+            </ul>
+            {% if venue.venue_image %}
+            <img src="{{venue.venue_image.url}}"> 
+            {%endif%}
+            <br><br>
+            {%if user == venue.owner%}
+            <a href="{% url 'Edit-venue' venue.id %}"><button  class="btn btn-primary">Edit</button></a>
+            {%else%}
+            <h1>only owner can edit</h1>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{%endblock%}

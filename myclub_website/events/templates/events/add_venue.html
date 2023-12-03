@@ -1,0 +1,33 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+
+
+	<h1>Add Venue To Database</h1>
+	<br/><br/>
+	{% if user.is_authenticated%}
+	{% if submitted %}
+		Your Venue Was Submitted Succefully!!!
+
+	{% else %}
+
+		<form action="" method=POST enctype="multipart/form-data">
+			{% csrf_token %}
+
+			{{ form.as_p }}
+
+			<input type="submit" value="Submit" class="btn btn-secondary">
+
+		</form>
+	{% endif %}
+
+	{%else%}
+	<h1>Access Denied </h1>
+	<h3>You must login</h3>
+	<button class="btn btn-danger">
+	<a class="nav-link active" aria-current="page" href="{% url 'login'%}">Login</a>
+	</button>
+	{%endif%}
+
+
+{% endblock %}

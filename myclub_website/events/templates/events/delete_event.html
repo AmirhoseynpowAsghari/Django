@@ -1,0 +1,20 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+<h3>Confirm Deletion</h3>
+    {% comment %} 
+    <p></p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form> {% endcomment %}
+    <br>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> Are you sure you want to delete the event "{{ event.name }}"?
+  <form method="post">
+    <br>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-secondary" > Delete </button>
+  </form>
+</div>
+{% endblock %}
