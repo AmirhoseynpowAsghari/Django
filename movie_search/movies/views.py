@@ -8,7 +8,7 @@ def movie_search_view(request):
         if form.is_valid():
             title = form.cleaned_data['title']
             # Replace 'YOUR_API_KEY' with your actual OMDb API key
-            api_key = '2853f67b'
+            api_key = 'Your-API-Key'
             movie_details = get_movie_details_by_title(api_key, title)
             return render(request, 'movies/results.html', {'details': movie_details})
     else:
